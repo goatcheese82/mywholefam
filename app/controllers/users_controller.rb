@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+    before_action :set_users
+    
     def index
     end
 
@@ -32,5 +34,17 @@ class UsersController < ApplicationController
             :location,
             :birthplace
         )
+    end
+
+    def set_users
+        if !User.all.empty?
+            @users = User.all
+        else
+            @users = []
+        end
+    end
+
+    def set_user
+        @user = User.find(params[:id])
     end
 end
